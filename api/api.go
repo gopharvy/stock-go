@@ -6,7 +6,6 @@ import (
 	"io/ioutil"
 	"net/http"
 	"stocks-go/model"
-	"strings"
 	"time"
 )
 
@@ -105,13 +104,14 @@ func (clt APIClient) buildAPIResponse(indexes []string, stockInfos map[string]mo
 		if len(indx) == 0 {
 			continue
 		}
+
 		if stock, ok := stockInfos[indx]; ok {
-			if strings.TrimSpace(indx) == "" {
-				continue
-			}
 			response[indx] = stock
-		} else {
-			response[clt.config.DefaultExchange] = stock
+			continue
+		}
+		//defaulting to AMEX exchange
+		if stock, ok := stockInfos[clt.config.DefaultExchange]; ok {
+			response[indx] = stock
 		}
 	}
 

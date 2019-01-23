@@ -2,6 +2,5 @@
     "apiToken":"UUNl5FMStSYXkWLpeECSL3bq4vshFBFsOdg87rY6OCGp0QM5VkDdB3F1eQLy",
     "apiURL":"https://www.worldtradingdata.com/api/v1/stock?symbol=%v&api_token=%v",
     "timeout": 1000,
-    "defaultExchange": "NYSE"
+    "defaultExchange": "AMEX"
 }
-
