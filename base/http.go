@@ -30,7 +30,7 @@ func (s Service) getStock(resp http.ResponseWriter, req *http.Request) {
 	stockID := vars[pathKey]
 
 	if len(stockID) == 0 {
-		s.serveResponse(resp, http.StatusBadRequest, []byte("Invalid Stock id.."))
+		s.serveResponse(resp, http.StatusBadRequest, nil)
 		return
 	}
 
