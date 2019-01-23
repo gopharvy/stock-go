@@ -1,1 +1,1 @@
-# stock-go
+stock-go
