@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"stocks-go/model"
+	"strings"
 	"time"
 )
 
@@ -101,10 +102,15 @@ func (clt APIClient) marshalApiHTTPResponse(httpResponse model.StockAPIResponse)
 func (clt APIClient) buildAPIResponse(indexes []string, stockInfos map[string]model.StockInfo) map[string]model.StockInfo {
 	response := make(map[string]model.StockInfo, 0)
 	for _, indx := range indexes {
+		if len(indx) == 0 {
+			continue
+		}
 		if stock, ok := stockInfos[indx]; ok {
+			if strings.TrimSpace(indx) == "" {
+				continue
+			}
 			response[indx] = stock
 		} else {
-			//default
 			response[clt.config.DefaultExchange] = stock
 		}
 	}
